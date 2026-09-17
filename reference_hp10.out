@@ -1,0 +1,54 @@
+[ T-Track ]
+    title = True Hp(10) Reference Dose
+     mesh =  reg            # mesh type is region-wise
+      reg = 100
+   e-type =    1            # e-mesh is given by the below data
+       ne =      1          # number of e-mesh points
+#    data = ( e(i), i = 1, ne + 1 )
+            0.00000E+00  2.00000E+01
+     unit =    1            # unit is [1/cm^2/source]
+ material =  all            # (D=all) number of specific material
+     axis =     eng            # axis of output
+     file = reference_hp10.out  # file name of output for the above axis
+     part =  neutron  
+# kf/name :  2112     
+  multiplier = all          # number of material group
+     part =  neutron  
+# kf/name :  2112     
+     emax =    20.000    
+      mat         mset1  
+      all ( 1.0000 -202 )
+#    used :        main (  %)        temp (  %)       total (  %)
+#  memory :          23 (  0)           0 (  0)          23 (  0)
+
+#------------------------------------------------------------------------------
+#newpage:
+#   no. =  1   reg =    100
+#   mset =  1
+
+x: Energy [MeV]
+y: Flux [1/cm^2/source]              
+p: xlin ylog afac(0.8) form(0.9)
+h: n            x            y(neutron ),hh0l n  
+#  e-lower      e-upper        neutron   r.err 
+   0.0000E+00   2.0000E+01   5.5103E+03  0.0002
+
+#   sum over                 5.5103E+03  0.0002
+
+'no. =  1,  reg =    100,  mset =   1'
+msuc: {\huge True Hp(10) Reference Dose}
+msdr: {\it plotted by \ANGEL \version}
+msdl: {\it calculated by \PHITS  3.35}
+wt: s(0.7)
+\vspace{-3}
+   vol  &=&   1.0000E+00 [cm^3]
+  mset  &=&   1
+e:
+ 
+# Information for Restart Calculation
+# This calculation was newly started
+# istdev =  2 # 1:Batch variance, 2:History variance
+# resc2  = 1.00000000000000000E+07 # Total source weight or Total source weight / maxcas
+# resc3  = 1.00000000000000000E+07 # Total history number or Total batch number
+# maxcas =       50000 # History / Batch, only used for istdev=1
+# bitrseed = 1000110000001000111111101100101001110101110010000011011101101000 # bit data of rseed

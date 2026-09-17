@@ -1,0 +1,199 @@
+[ P a r a m e t e r s ]
+icntl    = 0
+maxcas   = 50000
+maxbch   = 200
+file(6)  = phits.out
+e-mode   = 2           $ Activates event generator mode to transport secondary heavy ions
+negs     = 1           $ Activates EGS5 for electron/photon transport
+
+[ S o u r c e ]
+s-type = 2             
+proj   = neutron       
+x0     = -15.0         
+x1     =  15.0
+y0     = -15.0         
+y1     =  15.0
+z0     = -10.0         
+z1     = -10.0
+dir    = 1.0           
+e-type = 1             
+ne     = 19            
+$ --- Energy Boundaries (ne + 1 = 20 values) ---
+  1.0E-08  0.100  0.500  1.000  1.500  2.000  2.500  3.000  3.500  4.000  4.500  5.000  5.500  6.000  7.000  8.000  9.000  10.000  11.000  11.500
+$ --- Probability Weights (ne = 19 values) ---
+  0.000  0.013  0.021  0.035  0.045  0.065  0.075  0.120  0.130  0.125  0.110  0.100  0.095  0.060  0.035  0.030  0.010  0.003  0.001
+
+[ M a t e r i a l ]
+$ --- Phantom & Moderators ---
+mat[1]   1001 -0.0805   6012 -0.5998   8016 -0.3197  $ PMMA Phantom
+mat[2]   1001 -0.1437   6012 -0.8563                 $ Pure PE
+mat[9]   1001  2.0      6012  1.0                    $ HDPE
+
+$ --- Converters & Sensors ---
+mat[3]   3006 -0.2290   3007 -0.0120   9019 -0.7590  $ 6LiF Converter
+mat[4]  14000 -0.7005   6012 -0.2995                 $ Silicon Carbide
+mat[7]  74000  1.0                                   $ Tungsten (W)
+mat[8]  82000  1.0                                   $ Lead (Pb)
+
+$ --- Structural & Shielding ---
+mat[5]  13027 -1.0000                                $ Aluminum
+mat[6]   5010  0.8      5011  3.2      6012  1.0     $ Boron Carbide (B4C)
+
+[ S u r f a c e ]
+$ --- Outer World Boundary ---
+  99  so   200.0
+
+$ --- ISO Phantom (30 cm x 30 cm x 15 cm, front face at Z = 0.0) ---
+  10  px  -15.0
+  11  px   15.0
+  12  py  -15.0
+  13  py   15.0
+  14  pz    0.2        
+  15  pz   15.0        
+  16  pz    0.0
+
+$ --- Substrate Boundaries (5 x 7 cm Flat Board) ---
+  40  px  -2.5
+  41  px   2.5
+  42  py  -3.5
+  43  py   3.5
+
+$ --- Z-Axis Depth Planes (Z < 0.0) ---
+  20  pz   -0.05       $ SiC back contact interface (Al layer)
+  25  pz   -0.140      $ 10 um SiC interface (For Pos 3 Fast Neutron)
+  21  pz   -0.15       $ Front of SiC / Back of LiF
+  22  pz   -0.1501     $ Front of LiF / Base of front modifiers
+  23  pz   -0.2501     $ 1 mm depth (Used for Pos 4 Tungsten)
+  24  pz   -0.50       $ Global PE cover front face (3.5 mm thick)
+  28  pz   -0.6501     $ Tungsten front face (Pos 4)
+
+
+$ --- Quadrant Cylinders (Radius = 0.5 cm) ---
+  51  c/z  -1.25   1.75   0.5      $ Position 1: Thermal (Bare)
+  52  c/z   1.25   1.75   0.5      $ Position 2: Epithermal (Albedo)
+  53  c/z  -1.25  -1.75   0.5      $ Position 3: Fast (Recoil)
+  54  c/z   1.25  -1.75   0.5      $ Position 4: Spare (Tungsten)
+
+$ --- Special Cutouts ---
+  56  c/z   1.25   1.75   0.75     $ Pos 2 Rear Albedo Void Tunnel (Radius = 0.75 cm)
+
+[ C e l l ]
+$ ======================================================================
+$ GLOBAL STRUCTURES (Phantom, Backing, Shields)
+$ ======================================================================
+$ --- ISO PMMA Phantom ---
+  100    1 -1.19    10 -11  12 -13  14 -15
+
+$ --- Al Substrate (Ignores Pos 2 Albedo Tunnel +56) ---
+  204    5 -2.70    20 -16  40 -41  42 -43  +56
+
+$ --- B4C Rear Albedo Shield (Ignores Pos 2 Albedo Tunnel +56) ---
+  205    6 -2.52    16 -14  40 -41  42 -43  +56
+
+$ --- Global PE Cover (Excludes the 4 sensor columns) ---
+  210    2 -0.94    24 -22  40 -41  42 -43  +51 +52 +53 +54
+
+$ ======================================================================
+$ POSITION 1: THERMAL SENSOR (Bare Window)
+$ ======================================================================
+  2021   3 -2.54    22 -21  -51    $ 6LiF Converter (5 um)
+  2031   4 -3.21    21 -20  -51    $ SiC Active Sensor (1 mm)
+
+ $ ======================================================================
+$ POSITION 2: EPITHERMAL SENSOR (Albedo Window)
+$ ======================================================================
+  219    6 -2.52    24 -22  -52    $ Solid B4C Front Blockade (3.5 mm)
+  2022   3 -2.54    22 -21  -52    $ 6LiF Converter (5 um)
+  2032   4 -3.21    21 -20  -52    $ SiC Active Sensor (1 mm)
+  217    0          20 -14  -56    $ Rear Void Tunnel (Albedo Window)
+
+$ ======================================================================
+$ POSITION 3: FAST NEUTRON SENSOR (Proton Recoil)
+$ ======================================================================
+  213    2 -0.94    24 -22  -53    $ PE Fast Radiator Column
+  2033   4 -3.21    21 -25  -53    $ Ultra-thin SiC Active Sensor (10 um)
+  2035   4 -3.21    25 -20  -53    $ Bulk SiC Dead Zone (990 um)
+
+$ ======================================================================
+$ POSITION 4: SPARE / HIGH ENERGY (Tungsten)
+$ ======================================================================
+  214    7 -19.3    28 -22  -54    $ Tungsten Converter (5 mm)
+  2024   3 -2.54    22 -21  -54    $ 6LiF Converter (5 um)
+  2034   4 -3.21    21 -20  -54    $ SiC Active Sensor (1 mm)
+
+$ ======================================================================
+$ WORLD & GRAVEYARD
+$ ======================================================================
+$ --- Surrounding Vacuum (World) ---
+  101    0         -99  #100 #204 #205 #210 #219 #217 #213 #214 #2021 #2022 #2024 #2031 #2032 #2033 #2034 #2035
+
+$ --- Graveyard (Void: terminates tracking) ---
+  102   -1          99
+
+$ ======================================================================
+$ POSITION 1: THERMAL BARE WINDOW
+$ ======================================================================
+[ T - D e p o s i t ]
+title  = Pos 1 Thermal
+mesh   = reg
+reg    = 2031
+unit   = 3
+part   = all
+output = deposit
+axis   = eng
+e-type = 2
+ne     = 100
+emin   = 0.01
+emax   = 4.0
+file   = validate_pos1_thermal.out
+
+$ ======================================================================
+$ POSITION 2: EPITHERMAL ALBEDO
+$ ======================================================================
+[ T - D e p o s i t ]
+title  = Pos 2 Epithermal
+mesh   = reg
+reg    = 2032
+unit   = 3
+part   = all
+output = deposit
+axis   = eng
+e-type = 2
+ne     = 100
+emin   = 0.01
+emax   = 4.0
+file   = validate_pos2_epithermal.out
+
+$ ======================================================================
+$ POSITION 3: FAST NEUTRON (PROTON RECOIL)
+$ ======================================================================
+[ T - D e p o s i t ]
+title  = Pos 3 Fast
+mesh   = reg
+reg    = 2033
+unit   = 3
+part   = all
+output = deposit
+axis   = eng
+e-type = 2
+ne     = 100
+emin   = 0.01
+emax   = 1.0
+file   = validate_pos3_fast.out
+
+$ ======================================================================
+$ POSITION 4: HIGH ENERGY (3mm or 5mm TUNGSTEN)
+$ ======================================================================
+[ T - D e p o s i t ]
+title  = Pos 4 High Energy
+mesh   = reg
+reg    = 2034
+unit   = 3
+part   = all
+output = deposit
+axis   = eng
+e-type = 2
+ne     = 100
+emin   = 0.01
+emax   = 10.0
+file   = validate_pos4_spallation.out
