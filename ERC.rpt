@@ -1,0 +1,67 @@
+ERC report (2026-09-19T18:11:46, Encoding UTF8)
+Report includes: Errors, Warnings
+
+***** Sheet /
+[footprint_filter]: Assigned footprint (sot-23-6) doesn't match footprint filters (TSOT?23*)
+    ; warning
+    @(1900 mils, 2000 mils): Symbol U1 [LTC6268xS6-10]
+[footprint_filter]: Assigned footprint (sot-23-6) doesn't match footprint filters (TSOT?23*)
+    ; warning
+    @(1900 mils, 4950 mils): Symbol U5 [LTC6268xS6-10]
+[four_way_junction]: Four items connected at 558800, 508000
+    ; warning
+    @(2200 mils, 2000 mils): Symbol U1 Pin 1 [Output, Line]
+    @(2200 mils, 2000 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 558800, 1257300
+    ; warning
+    @(2200 mils, 4950 mils): Symbol U5 Pin 1 [Output, Line]
+    @(2200 mils, 4950 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 698500, 508000
+    ; warning
+    @(2750 mils, 2000 mils): Symbol C2 Pin 2 [Passive, Line]
+    @(2750 mils, 2000 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 698500, 1257300
+    ; warning
+    @(2750 mils, 4950 mils): Symbol C25 Pin 2 [Passive, Line]
+    @(2750 mils, 4950 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 850900, 304800
+    ; warning
+    @(3350 mils, 1200 mils): Symbol C6 Pin 2 [Passive, Line]
+    @(3350 mils, 1200 mils): Symbol #FLG02 Pin 1 [Power output, Line]
+[footprint_filter]: Assigned footprint (sot-23-6) doesn't match footprint filters (TSOT?23*)
+    ; warning
+    @(7150 mils, 2000 mils): Symbol U3 [LTC6268xS6-10]
+[footprint_filter]: Assigned footprint (sot-23-6) doesn't match footprint filters (TSOT?23*)
+    ; warning
+    @(7150 mils, 4950 mils): Symbol U7 [LTC6268xS6-10]
+[four_way_junction]: Four items connected at 1892300, 508000
+    ; warning
+    @(7450 mils, 2000 mils): Symbol U3 Pin 1 [Output, Line]
+    @(7450 mils, 2000 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 1892300, 1257300
+    ; warning
+    @(7450 mils, 4950 mils): Symbol U7 Pin 1 [Output, Line]
+    @(7450 mils, 4950 mils): Horizontal Wire, length 250 mils
+[four_way_junction]: Four items connected at 2032000, 508000
+    ; warning
+    @(8000 mils, 2000 mils): Symbol C13 Pin 2 [Passive, Line]
+    @(8000 mils, 2000 mils): Horizontal Wire, length 100 mils
+[four_way_junction]: Four items connected at 2032000, 1257300
+    ; warning
+    @(8000 mils, 4950 mils): Symbol C33 Pin 2 [Passive, Line]
+    @(8000 mils, 4950 mils): Vertical Wire, length 500 mils
+[four_way_junction]: Four items connected at 495300, 241300
+    ; warning
+    @(1950 mils, 950 mils): Symbol #PWR054 Pin 1 [Power input, Line]
+    @(1950 mils, 950 mils): Symbol #FLG06 Pin 1 [Power output, Line]
+[four_way_junction]: Four items connected at 596900, 241300
+    ; warning
+    @(1950 mils, 950 mils): Horizontal Wire, length 400 mils
+    @(2350 mils, 650 mils): Vertical Wire, length 300 mils
+
+***** Sheet /Digital_MCU.kicad_sch./
+
+ ** ERC messages: 15  Errors 0  Warnings 15
+
+ ** Ignored checks:
+    - None
